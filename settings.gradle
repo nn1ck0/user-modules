@@ -3,4 +3,5 @@ include 'utils-module'
 include 'notification-service'
 include 'user-service'
 include 'config-server'
+include 'eurika-server'
 
