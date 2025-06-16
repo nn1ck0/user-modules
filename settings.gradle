@@ -1,0 +1,6 @@
+rootProject.name = 'UserModules'
+include 'utils-module'
+include 'notification-service'
+include 'user-service'
+include 'config-server'
+

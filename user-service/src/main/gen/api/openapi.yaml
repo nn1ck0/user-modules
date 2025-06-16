@@ -1,0 +1,127 @@
+openapi: 3.0.1
+info:
+  description: API for user-service application
+  title: User-service
+  version: "1.0"
+servers:
+- description: Local Server
+  url: http://localhost:8081
+paths:
+  /api/v1/create:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDto'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+          description: OK! User is created
+        "502":
+          description: Server offline
+      summary: Create User
+      tags:
+      - User
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/v1/update:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDto'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+          description: OK! User is updated
+        "502":
+          description: Server offline
+      summary: Update User
+      tags:
+      - User
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/v1/{id}:
+    delete:
+      parameters:
+      - example: 1
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          description: OK! User was deleted
+        "404":
+          description: User was not found
+      summary: Delete User by id
+      tags:
+      - User
+      x-accepts:
+      - application/json
+    get:
+      parameters:
+      - example: 1
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+          description: OK! User is found
+        "404":
+          description: User was not found
+      summary: Get User by id
+      tags:
+      - User
+      x-accepts:
+      - application/json
+components:
+  schemas:
+    UserDto:
+      example:
+        firstName: firstName
+        lastName: lastName
+        userId: 0
+        email: email
+      properties:
+        userId:
+          format: int64
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          format: email
+          type: string
+      required:
+      - email
+      - firstName
+      - lastName
+      type: object
+

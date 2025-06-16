@@ -1,0 +1,111 @@
+openapi: 3.0.1
+info:
+  title: User-service
+  description: API for user-service application
+  version: 1.0
+servers:
+  - url: http://localhost:8081
+    description: Local Server
+paths:
+  /api/v1/create:
+    post:
+      tags:
+        - User
+      summary: Create User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDto'
+      responses:
+        '200':
+          description: "OK! User is created"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '502':
+          description: "Server offline"
+
+  /api/v1/update:
+    put:
+      tags:
+        - User
+      summary: "Update User"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDto'
+      responses:
+        '200':
+          description: "OK! User is updated"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '502':
+          description: "Server offline"
+
+  /api/v1/{id}:
+    get:
+      tags:
+        - User
+      summary: "Get User by id"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+          example: 1
+      responses:
+        '200':
+          description: "OK! User is found"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '404':
+          description: "User was not found"
+
+    delete:
+      tags:
+        - User
+      summary: "Delete User by id"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+          example: 1
+      responses:
+        '200':
+          description: "OK! User was deleted"
+        '404':
+          description: "User was not found"
+
+components:
+  schemas:
+    UserDto:
+      type: object
+      required:
+        - firstName
+        - lastName
+        - email
+      properties:
+        userId:
+          type: integer
+          format: int64
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
