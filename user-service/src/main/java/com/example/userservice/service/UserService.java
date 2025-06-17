@@ -23,8 +23,7 @@ public class UserService {
     }
 
     public void deleteUser(Integer id) {
-
-        userRepoMem.deleteById(id).orElseThrow();
+        userEventPublisher.PublishUserDeletedEvent(userRepoMem.deleteById(id).orElseThrow().getEmail());
     }
 
     public UserDto getUserById(Integer id) {
