@@ -3,7 +3,20 @@ server:
 
 spring:
   application:
-    name=user-service: "user-service"
+    name=user-service: user-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:13000/userservicedb
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
 
 springdoc:
   swagger-ui:
