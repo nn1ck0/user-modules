@@ -41,8 +41,8 @@ public class UserController {
         return userService.getUserById(id);
     }
 
-    @PutMapping("/update")
-    public UserDto updateUser(@RequestBody UserDto user) {
-        return userService.updateUser(user);
+    @PutMapping("/update/{id}")
+    public UserDto updateUser(@PathVariable Integer id, @RequestBody UserDto user) {
+        return userService.updateUser(id, user);
     }
 }
