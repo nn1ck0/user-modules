@@ -28,11 +28,10 @@ spring:
               uri: http://localhost:8081
               predicates:
                 - Path=/api/v1/**
-#              filters:
-#                - RewritePath=/api/v1/(?<segment>.*), /api/v1/$\{segment}
               filters:
                 - name: CircuitBreaker
                   args:
+                    id: 1
                     name: userCircuitBreaker
                     fallbackUri: forward:/fallback/users
                 - RemoveRequestHeader=Cookie
