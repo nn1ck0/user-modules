@@ -4,4 +4,5 @@ include 'notification-service'
 include 'user-service'
 include 'config-server'
 include 'eureka-server'
+include 'api-gateway'
 
