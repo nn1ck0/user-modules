@@ -12,6 +12,8 @@ logging:
     org.springframework.cloud.config: DEBUG
 
 
+
+
 #
 #eureka:
 #  client:
