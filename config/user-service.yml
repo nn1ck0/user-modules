@@ -2,6 +2,10 @@ server:
   port: 8081
 
 spring:
+  config:
+    import:
+      - optional:file:./config/production.env
+      - optional:file:./production.env
   application:
     name=user-service: user-service
 
@@ -10,9 +14,9 @@ spring:
     change-log: classpath:db.changelog/db.changelog-master.yaml
 
   datasource:
-    url: jdbc:postgresql://localhost:13000/userservicedb
-    username: postgres
-    password: postgres
+    url: ${DATABASE_URL}
+    username: ${DATABASE_NAME}
+    password: ${DATABASE_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
