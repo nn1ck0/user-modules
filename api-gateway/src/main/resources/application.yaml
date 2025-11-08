@@ -1,0 +1,43 @@
+server:
+  port: 8086  # Порт Gateway
+
+spring:
+  application:
+    name: api-gateway
+
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: user-service
+              uri: http://localhost:8081
+              predicates:
+                - Path=/api/v1/**
+              filters:
+                - AuthFilter
+#                - name: CircuitBreaker
+#                  args:
+#                    id: 1
+#                    name: userCircuitBreaker
+#                    fallbackUri: forward:/fallback/users
+#                - RemoveRequestHeader=Cookie
+            - id: security-module
+              uri: http://localhost:9898
+              predicates:
+                - Path=/auth/**
+  main:
+    web-application-type: reactive
+
+
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      userCircuitBreaker:
+        slidingWindowSize: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        permittedNumberOfCallsInHalfOpenState: 2
+
