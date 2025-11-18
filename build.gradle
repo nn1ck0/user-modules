@@ -21,8 +21,6 @@ configurations {
 
 repositories {
     mavenCentral()
-    mavenLocal()
-
 }
 
 dependencyManagement {
