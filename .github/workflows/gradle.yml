@@ -1,5 +1,8 @@
 name: Java CI with Gradle
 
+env:
+  SECRET_VAR: ${{ secrets.SECRET_VAR }}
+
 on:
   push:
     branches: [ "master" ]
@@ -64,3 +67,5 @@ jobs:
         run: chmod +x ./gradlew
       - name: Generate and submit dependency graph
         uses: gradle/actions/dependency-submission@af1da67850ed9a4cedd57bfd976089dd991e2582
+
+
