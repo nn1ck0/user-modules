@@ -1,13 +1,13 @@
 name: Java CI with Gradle
 
-env:
-  SECRET_VAR: ${{ secrets.SECRET_VAR }}
-
 on:
   push:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+
+env:
+  SECRET_VAR: ${{ secrets.SECRET_VAR }}
 
 jobs:
 
@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Set up JDK 17 $SECRET_VAR
+      - name: Set up JDK 17 ${{SECRET_VAR}}
         uses: actions/setup-java@v4
         with:
           java-version: '17'
