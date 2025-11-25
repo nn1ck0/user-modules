@@ -8,6 +8,7 @@ on:
 
 env:
   SECRET_VAR: ${{ secrets.SECRET_VAR }}
+  DISP_VAR: "action"
 
 jobs:
 
@@ -18,7 +19,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Set up JDK 17 - ${{ env.SECRET_VAR }}
+      - name: Set up JDK 17 - ${{ env.DISP_VAR }}
         uses: actions/setup-java@v4
         with:
           java-version: '17'
